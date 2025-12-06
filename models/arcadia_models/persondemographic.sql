@@ -25,15 +25,15 @@ with acl_providers AS (
                 security_path.pathsegment
             ) AS path
         FROM (
-            SELECT personid, npi FROM {{ ref('AttributionFunctional') }}
+            SELECT personid, npi FROM {{ ref('stg_attribution_functional') }}
             UNION
-            SELECT personid, npi FROM {{ ref('AttributionClinical') }}
+            SELECT personid, npi FROM {{ ref('stg_attributionClinical') }}
             UNION
-            SELECT personid, npi FROM {{ ref('AttributionPlan') }}
+            SELECT personid, npi FROM {{ ref('stg_attribution_plan') }}
             UNION
-            SELECT personid, npi FROM {{ ref('AttributionRendering') }} WHERE medicalind = 1
+            SELECT personid, npi FROM {{ ref('stg_attribution_rendering') }} WHERE medicalind = 1
         ) f
-        INNER JOIN {{ ref('provider_filter_hierarchy') }} security_path
+        INNER JOIN {{ ref('ProviderFilterHierarchy') }} security_path
             ON security_path.npi = f.npi
     ) s
     WHERE s.path IS NOT NULL
@@ -125,4 +125,4 @@ SELECT
     -----------------------------------------------------
     REPLACE(TO_VARCHAR(person_json:accessControlPolicy), '\\', '') AS accessControlPolicy
 
-FROM json_per_person;
+FROM json_per_person

@@ -2,4 +2,4 @@ select
     personid,
     npi,
     rulenum
-from {{ ref('attributionFunctional') }}
+from {{ ref('attributionfunctional') }}

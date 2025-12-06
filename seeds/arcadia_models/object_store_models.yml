@@ -31,3 +31,27 @@ seeds:
       - name: sourcepartition
       - name: locationname
       - name: enctype
+  - name: provider_filter_hierarchy
+    description: "filter hierarchy"
+    columns:
+      - name: npi
+      - name: pathsegment
+      - name: name
+      - name: assignmenttype
+      - name: path
+      - name: providerpersonid
+      - name: level
+      - name: pcpind
+      - name: claimsrecord
+      - name: inserttimestamp
+      - name: grouper1value
+      - name: grouper2value
+      - name: grouper3value
+      - name: grouper1name
+      - name: grouper2name
+      - name: grouper3name
+      - name: activeind
+      - name: outreachenabledind
+      - name: outreachpracticename
+      - name: outreachpracticephone
+      - name: updatetimestamp
