@@ -1,0 +1,33 @@
+version: 2
+
+seeds:
+  - name: attributionClinical
+    description: "Clinical attribution seed"
+    columns:
+      - name: personid
+      - name: npi
+      - name: sourcepartition
+  - name: attributionfunctional
+    description: "functional attribution seed"
+    columns:
+      - name: personid
+      - name: npi
+      - name: rulenum
+  - name: attributionPlan
+    description: "Plan attribution seed"
+    columns:
+      - name: personid
+      - name: npi
+      - name: startdate
+      - name: enddate
+      - name: sourcepartition
+  - name: attributionRendering
+    description: "Plan rendering seed"
+    columns:
+      - name: personid
+      - name: npi
+      - name: visitdate
+      - name: medicalind
+      - name: sourcepartition
+      - name: locationname
+      - name: enctype
