@@ -4,15 +4,13 @@ default:
     dev:
       type: spark
       method: thrift
-      host: spark
+      host: spark          # nombre del servicio en docker-compose
       port: 10000
-      schema: default
+      schema: default      # db/schema
       database: default
-      auth: NONE
-      user: ""
+      auth: NONE           # sin auth
+      user: ""             # usuario vacío
       password: ""
-      protocol: binary
-      transport: none
-      connect_timeout: 30
-      retries: 3
       threads: 4
+      connect_timeout: 60
+      retries: 5
