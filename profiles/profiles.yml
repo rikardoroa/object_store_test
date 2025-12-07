@@ -1,0 +1,18 @@
+default:
+  target: dev
+  outputs:
+    dev:
+      type: spark
+      method: thrift
+      host: spark
+      port: 10000
+      schema: default
+      database: default
+      auth: NONE
+      user: ""
+      password: ""
+      protocol: binary
+      transport: none
+      connect_timeout: 30
+      retries: 3
+      threads: 4

@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  spark:
+    build:
+      context: .
+      dockerfile: ./docker/spark/Dockerfile
+    container_name: spark
+    ports:
+      - "10000:10000"
+      - "4040:4040"
+    networks:
+      - dbt_spark_net
+
+  dbt:
+    build:
+      context: .
+      dockerfile: ./docker/dbt/Dockerfile
+    container_name: dbt
+    environment:
+      - DBT_PROFILES_DIR=/usr/app/profiles
+    volumes:
+      - .:/usr/app
+    depends_on:
+      - spark
+    networks:
+      - dbt_spark_net
+
+networks:
+  dbt_spark_net:
+    driver: bridge
