@@ -55,3 +55,23 @@ seeds:
       - name: outreachpracticename
       - name: outreachpracticephone
       - name: updatetimestamp
+  - name: providerperson
+    description: "provider person seed"
+    columns:
+      - name: _hoodie_commit_time
+      - name: _hoodie_commit_seqno
+      - name: _hoodie_record_key
+      - name: _hoodie_partition_path
+      - name: _hoodie_file_name
+      - name: providerpersonid
+      - name: lastname
+      - name: firstname
+      - name: provfullname
+      - name: npi
+      - name: specialty
+      - name: providerid
+      - name: sourceid
+      - name: activeind
+      - name: deleteind
+      - name: inserttimestamp
+      - name: updatetimestamp
