@@ -1,0 +1,23 @@
+select
+    npi,
+    pathsegment,
+    name,
+    assignmenttype,
+    path,
+    providerpersonid,
+    level,
+    pcpind,
+    claimsrecord,
+    inserttimestamp,
+    grouper1value,
+    grouper2value,
+    grouper3value,
+    grouper1name,
+    grouper2name,
+    grouper3name,
+    activeind,
+    outreachenabledind,
+    outreachpracticename,
+    outreachpracticephone,
+    updatetimestamp
+from {{ ref('provider_filter_hierarchy') }}
