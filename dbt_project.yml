@@ -62,4 +62,99 @@ seeds:
           deleteind: string
           inserttimestamp: string
           updatetimestamp: string
-
+    
+    plan_member:
+        +column_types:
+          _hoodie_commit_time: string
+          _hoodie_commit_seqno: string
+          _hoodie_record_key: string
+          _hoodie_partition_path: string
+          _hoodie_file_name: string
+          member_id: string
+          first_name: string
+          middle_name: string
+          last_name: string
+          contact_title: string
+          sex_unscrubbed: string
+          home_phone: string
+          business_phone: string
+          cell_phone: string
+          dob: string
+          death_date: string
+          head_of_household_name: string
+          pregnancy_date: string
+          first_covered_date: string
+          special_needs_unscrubbed: string
+          individual_no: string
+          language_unscrubbed: string
+          risk_unscrubbed: string
+          marital_status_unscrubbed: string
+          ssn: string
+          relationship_unscrubbed: string
+          ethnicity_unscrubbed: string
+          medicaid_id: string
+          medicare_id: string
+          source_id: string
+          create_timestamp: string
+          modify_timestamp: string
+          created_by: string
+          modified_by: string
+          delete_ind: string
+          loaded_from_file: string
+          medicaid_renewal_date: string
+          race_unscrubbed: string
+          ethnicity: string
+          language: string
+          marital_status: string
+          race: string
+          relationship: string
+          sex: string
+          special_needs: string
+          risk: string
+          scrubbed: string
+          id: string
+          member: string
+          exportcategory: string
+          deleted_reason: string
+          quality_fail_reason: string
+          row_hash: string
+          extract_timeseries_bucket: string
+          availability: string
+          _arcadia_source: string
+          year_bucket: string
+          deleted: string
+          lowquality: string
+          transitioned: string
+    
+    patient:
+        +column_types:
+          _hoodie_commit_time: string
+          _hoodie_commit_seqno: string
+          _hoodie_record_key: string
+          _hoodie_partition_path: string
+          _hoodie_file_name: string
+          patientid: string
+          lastname: string
+          firstname: string
+          middlename: string
+          gender: string
+          dob: string
+          deathdate: string
+          address1: string
+          address2: string
+          city: string
+          state: string
+          zip: string
+          county: string
+          phone: string
+          race: string
+          ssn: string
+          maritalstatus: string
+          ethnicity: string
+          language: string
+          created_timestamp: string
+          modified_timestamp: string
+          deleteind: string
+          loaded_from_file: string
+          _arcadia_source: string
+          row_hash: string
