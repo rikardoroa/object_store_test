@@ -171,3 +171,33 @@ seeds:
       - name: loaded_from_file
       - name: _arcadia_source
       - name: row_hash
+  - name: nppes
+    description: "NPPES provider seed"
+    columns:
+      - name: npi
+      - name: description
+      - name: providerprimarytaxonomycode
+      - name: entitytype
+      - name: providerpracticelocationaddress1
+      - name: providerpracticelocationaddress2
+      - name: providerpracticelocationcity
+      - name: providerpracticelocationstate
+      - name: providerpracticelocationzip
+      - name: providerpracticephone
+      - name: providerorgname
+      - name: providerlastname
+      - name: providerfirstname
+      - name: createtimestamp
+      - name: updatetimestamp
+  - name: taxonomy
+    description: "taxonomy seed"
+    columns:
+      - name: taxonomycode
+      - name: taxonomygroup
+      - name: taxonomyclassification
+      - name: taxonomyspecialization
+      - name: taxonomydescription
+      - name: taxonomynotes
+      - name: createtimestamp
+      - name: updatetimestamp
+

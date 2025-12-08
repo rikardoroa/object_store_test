@@ -58,71 +58,56 @@ persons AS (
         personid,
         'arcgd' AS customer
     FROM acl_providers
-)
+),
 
 ---------------------------------------------------------
 -- CTE: JSON per person
 ---------------------------------------------------------
-,
 json_per_person AS (
     SELECT
         p.personid,
         p.customer,
-
-        OBJECT_CONSTRUCT(
+        named_struct(
             'customer', p.customer,
-            'fragment', 'spr@urn:doid:arcadia.io:person!' || p.customer || '.' || p.personid,
-            'policyID', 'person_' || p.personid,
+            'fragment', concat('spr@urn:doid:arcadia.io:person!', p.customer, '.', p.personid),
+            'policyID', concat('person_', p.personid),
             'accessControlPolicy',
-                OBJECT_CONSTRUCT(
-                    'personId', TO_VARCHAR(p.personid),
+                named_struct(
+                    'personId', cast(p.personid as string),
                     'DeleteInd', 'N',
                     'policyEntries',
-                        ARRAY_CONSTRUCT(
-                            OBJECT_CONSTRUCT(
-                                'sourceObjectURI',
-                                    'urn:doid:arcadia.io:person!' || p.customer || '.' || p.personid,
-                                'lastUpdated',
-                                    TO_VARCHAR(CURRENT_TIMESTAMP()),
+                        array(
+                            named_struct(
+                                'sourceObjectURI', concat('urn:doid:arcadia.io:person!', p.customer, '.', p.personid),
+                                'lastUpdated', cast(current_timestamp() as string),
                                 'accessControlLists',
-                                    OBJECT_CONSTRUCT(
+                                    named_struct(
                                         'acl_providers', a.acl_providers,
-                                        'acl_sources', ARRAY_CONSTRUCT('0')
+                                        'acl_sources', array('0')
                                     )
                             )
                         )
                 )
-        ) AS person_json
-
+        ) AS json_obj
     FROM persons p
     LEFT JOIN acl_arrays a
         ON p.personid = a.personid
 )
 
 ---------------------------------------------------------
--- FINAL FLATTENED OUTPUT PER PERSON
+-- FINAL OUTPUT (Spark)
 ---------------------------------------------------------
 SELECT
     personid,
-
-    -----------------------------------------------------
     -- OS FIELDS
-    -----------------------------------------------------
     'spr' AS os_id,
-    'urn:doid:arcadia.io:person!' || person_json:customer::string || '.' || personid AS os_subject,
+    concat('urn:doid:arcadia.io:person!', json_obj.customer, '.', personid) AS os_subject,
     'accesspolicyitem' AS os_datatype,
     'Person' AS os_type,
-
-    -----------------------------------------------------
     -- TOP LEVEL SCALARS
-    -----------------------------------------------------
-    person_json:customer::string AS customer,
-    person_json:fragment::string AS fragment,
-    person_json:policyID::string AS policyID,
-
-    -----------------------------------------------------
-    -- TOP LEVEL OBJECTS/ARRAYS AS STRING JSON (NO \)
-    -----------------------------------------------------
-    REPLACE(TO_VARCHAR(person_json:accessControlPolicy), '\\', '') AS accessControlPolicy
-
-FROM json_per_person
+    json_obj.customer AS customer,
+    json_obj.fragment AS fragment,
+    json_obj.policyID  AS policyID,
+    -- STRING JSON NO ESCAPADO
+    to_json(json_obj.accessControlPolicy) AS accessControlPolicy
+FROM json_per_person;

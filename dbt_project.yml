@@ -128,33 +128,71 @@ seeds:
     
     patient:
         +column_types:
-          _hoodie_commit_time: string
-          _hoodie_commit_seqno: string
-          _hoodie_record_key: string
-          _hoodie_partition_path: string
-          _hoodie_file_name: string
-          patientid: string
-          lastname: string
-          firstname: string
-          middlename: string
-          gender: string
-          dob: string
-          deathdate: string
+          center_id: string
+          patient_id: string
+          provider_id: string
+          first_name: string
+          middle_name: string
+          last_name: string
+          race: string
+          ethnicity: string
+          language: string
+          email: string
           address1: string
           address2: string
           city: string
+          county: string
           state: string
           zip: string
-          county: string
           phone: string
-          race: string
-          ssn: string
-          maritalstatus: string
-          ethnicity: string
-          language: string
-          created_timestamp: string
-          modified_timestamp: string
-          deleteind: string
+          birth_date: string
+          death_date: string
+          patient_status: string
+          create_timestamp: string
+          delete_ind: string
+          sex: string
+          modify_timestamp: string
+          mrn: string
           loaded_from_file: string
-          _arcadia_source: string
+          guarantor_self_ind: string
+          guarantor_id: string
+          homelessness_status: string
+          migrant_status: string
+          veteran_status: string
+          ssn: string
+          income: string
+          family_size: string
+          alias: string
+          guarantor_relationship: string
+          phone2: string
+          advance_directive_ind: string
+          billing_account_id: string
+          usual_location: string
+          opt_in_ind: string
+          mail_address1: string
+          mail_address2: string
+          mail_city: string
+          mail_state: string
+          mail_zip: string
+          medicaid_id: string
+          occupation: string
+          race_scrubbed: string
+          language_scrubbed: string
+          ethnicity_scrubbed: string
+          patient_status_scrubbed: string
+          test_patient_ind: string
+          scrubbed: string
+          outreach_opt_out: string
+          id: string
+          patient: string
+          exportcategory: string
+          deleted_reason: string
+          quality_fail_reason: string
           row_hash: string
+          extract_timeseries_bucket: string
+          availability: string
+          _arcadia_source: string
+          year_bucket: string
+          deleted: string
+          lowquality: string
+          transitioned: string
